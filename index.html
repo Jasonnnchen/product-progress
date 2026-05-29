@@ -203,7 +203,7 @@
   .key-dates h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 16px; }
   .key-date-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
   .key-date-item {
@@ -231,7 +231,7 @@
 
 <div class="header">
   <h1>如水科技 · 亚马逊产品开发进度表</h1>
-  <div class="date">更新时间：2026-05-28 11:14</div>
+  <div class="date">更新时间：2026-05-29 10:30</div>
 </div>
 
 <!-- 概览统计 -->
@@ -241,16 +241,16 @@
     <div class="value blue">3</div>
   </div>
   <div class="stat-card">
-    <div class="label">进行中</div>
-    <div class="value yellow">5</div>
+    <div class="label">活跃任务</div>
+    <div class="value yellow">7</div>
   </div>
   <div class="stat-card">
     <div class="label">近期关键节点</div>
-    <div class="value" style="color:var(--accent)">5</div>
+    <div class="value" style="color:var(--accent)">6</div>
   </div>
   <div class="stat-card">
     <div class="label">风险项</div>
-    <div class="value red">3</div>
+    <div class="value red">4</div>
   </div>
 </div>
 
@@ -261,7 +261,7 @@
       <div class="product-icon p1">🧴</div>
       <div>
         <div class="product-name">产品一：可舔食润滑油</div>
-        <div class="product-sub">Edible Lubricant — 包材生产 + FDA列名 + 液体调制</div>
+        <div class="product-sub">Edible Lubricant — 包材生产 + FDA列名</div>
       </div>
     </div>
     <div class="status-badge on-track">推进中</div>
@@ -279,45 +279,46 @@
       <div class="progress-bar-wrap"><div class="progress-bar done" style="width:100%"></div></div>
       <div class="milestone-status"><span class="dot done"></span><span>已完成</span></div>
     </div>
-    <div class="milestone-row completed">
-      <div class="milestone-label">UDI码生成确认<div class="sub">✅ 已解决，卡点清除</div></div>
-      <div class="milestone-date"><strong>5/28</strong> 完成</div>
-      <div class="progress-bar-wrap"><div class="progress-bar done" style="width:100%"></div></div>
-      <div class="milestone-status"><span class="dot done"></span><span>已完成</span></div>
-    </div>
-    <div class="milestone-row active">
-      <div class="milestone-label">FDA 列名申请<div class="sub">🔴 供应商品牌名填错，今日输出正确信息给机构修改</div></div>
+
+    <div class="milestone-row" style="background:rgba(239,68,68,0.06);margin:0 -16px;padding:14px 16px;border-radius:8px;">
+      <div class="milestone-label">FDA 列名申请<div class="sub" style="color:#ef4444;">🔴 品牌名填错，今日输出正确信息给机构修改</div></div>
       <div class="milestone-date">预计完成 <strong>6/4-6/7</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:30%"></div></div>
+      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:35%"></div></div>
       <div class="milestone-status"><span class="dot active"></span><span>进行中</span></div>
     </div>
     <div class="milestone-row active">
       <div class="milestone-label">FDA 列名审批通过<div class="sub">品牌名修正后 7-10 天完成，需持续关注</div></div>
       <div class="milestone-date">预计 <strong>6/4-6/7</strong></div>
       <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
-      <div class="milestone-status"><span class="dot pending"></span><span>等待中</span></div>
+      <div class="milestone-status"><span class="dot waiting"></span><span>等待中</span></div>
     </div>
     <div class="milestone-row active">
       <div class="milestone-label">产品打样<div class="sub">荔枝樱桃各三种配比 · 出大货前持续调整</div></div>
       <div class="milestone-date">预计 <strong>5/25-6/5</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:10%"></div></div>
+      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:35%"></div></div>
       <div class="milestone-status"><span class="dot active"></span><span>已开始</span></div>
     </div>
     <div class="milestone-row active">
-      <div class="milestone-label">时光映画设计对接<div class="sub">2套主图A+和一组品牌故事</div></div>
-      <div class="milestone-date">预计 <strong>5/25-5/29</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:25%"></div></div>
-      <div class="milestone-status"><span class="dot active"></span><span>已开始</span></div>
+      <div class="milestone-label">时光映画设计对接<div class="sub">2套主图A+和一组品牌故事 · 已签已付50%定金</div></div>
+      <div class="milestone-date">预计 <strong>5/21-5/25</strong> · 实际完成 <strong>6/2</strong></div>
+      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:85%"></div></div>
+      <div class="milestone-status"><span class="dot active"></span><span>进行中</span></div>
     </div>
     <div class="milestone-row">
-      <div class="milestone-label">软管包材生产完成<div class="sub">生产周期约 28 天（从5/15起）</div></div>
+      <div class="milestone-label">软管包材生产完成<div class="sub">生产周期约 28 天 · 建议每周确认一次</div></div>
       <div class="milestone-date">预计 <strong>6/12</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:36%"></div></div>
+      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:45%"></div></div>
       <div class="milestone-status"><span class="dot active"></span><span>进行中</span></div>
     </div>
     <div class="milestone-row">
       <div class="milestone-label">液体调制 + 装瓶打包出货<div class="sub">包材到位后约 7 天</div></div>
-      <div class="milestone-date">预计 <strong>6/19</strong></div>
+      <div class="milestone-date">预计 <strong>6/12-6/19</strong></div>
+      <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
+      <div class="milestone-status"><span class="dot pending"></span><span>待开始</span></div>
+    </div>
+    <div class="milestone-row">
+      <div class="milestone-label">申请第5类商标<div class="sub">出货后第一时间提交 · 品牌保护</div></div>
+      <div class="milestone-date">预计 <strong>6/19 后</strong></div>
       <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
       <div class="milestone-status"><span class="dot pending"></span><span>待开始</span></div>
     </div>
@@ -325,11 +326,11 @@
   <div class="notes-section">
     <div class="note" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--red);">
       <span class="icon">🔴</span>
-      <span><strong>供应商列名时品牌名填错！</strong>已在处理中，今日（5/28）输出正确的品牌信息给 FDA 机构进行修改。列名修正后预计 <strong>7-10 天</strong>（约 6/4-6/7）完成。此问题直接影响后续出货时间线，需持续跟进机构反馈。</span>
+      <span><strong>供应商列名时品牌名填错！</strong>正在处理中，今日（5/29）输出正确的品牌信息给 FDA 机构修改。列名修正后预计 <strong>7-10 天</strong>（约 6/4-6/7）完成。此问题直接影响后续出货时间线，需持续跟进机构反馈。</span>
     </div>
     <div class="note">
       <span class="icon">⚠</span>
-      <span><strong>持续关注：</strong>FDA 列名品牌名修正进度，7-10 天内跟进机构修改结果。如修正延迟可能影响包材生产启动（原计划 6/12）和后续出货节奏。</span>
+      <span><strong>持续关注：</strong>FDA 列名品牌名修正进度，7-10 天内跟进机构修改结果。如修正延迟可能影响包材生产和后续出货节奏。</span>
     </div>
     <div class="note" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--red);">
       <span class="icon">🚨</span>
@@ -337,7 +338,7 @@
     </div>
     <div class="note blue">
       <span class="icon">ℹ</span>
-      <span><strong>进行中：</strong>产品打样（荔枝樱桃各三种配比，出大货前持续调整）和时光映画设计对接（2套主图A+和一组品牌故事）均已启动。打样计划 5/25-6/5 完成，设计对接计划 5/25-5/29 完成。</span>
+      <span><strong>并行推进：</strong>产品打样（荔枝樱桃各三种配比，出大货前持续调整）和时光映画设计对接（已签已付50%定金，实际完成6/2）均已启动。软管包材已开始生产，建议每周确认一次进度。</span>
     </div>
   </div>
 </div>
@@ -349,35 +350,35 @@
       <div class="product-icon p2">🐰</div>
       <div>
         <div class="product-name">产品二：双层包胶兔子振动棒</div>
-        <div class="product-sub">Dual-layer Silicone Rabbit Vibrator — 模具开发 + 大货生产</div>
+        <div class="product-sub">Dual-layer Silicone Rabbit Vibrator — 模具开发</div>
       </div>
     </div>
     <div class="status-badge in-progress">模具阶段</div>
   </div>
   <div class="progress-section">
-    <div class="milestone-row completed">
-      <div class="milestone-label">合同签订 &amp; 模具定金<div class="sub">模具费用已付</div></div>
-      <div class="milestone-date"><strong>5/14</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar done" style="width:100%"></div></div>
-      <div class="milestone-status"><span class="dot done"></span><span>已完成</span></div>
-    </div>
     <div class="milestone-row active">
-      <div class="milestone-label">模具开发<div class="sub">预计一个月内出模具（从5/14起）</div></div>
-      <div class="milestone-date">预计 <strong>6/14</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:37%"></div></div>
+      <div class="milestone-label">合同签订 &amp; 模具定金<div class="sub">模具费用已付 · 约1个月</div></div>
+      <div class="milestone-date">预计 <strong>5/14-6/14</strong></div>
+      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:45%"></div></div>
       <div class="milestone-status"><span class="dot active"></span><span>进行中</span></div>
     </div>
     <div class="milestone-row">
-      <div class="milestone-label">大货生产完成<div class="sub">供应商承诺出货日</div></div>
-      <div class="milestone-date">预计 <strong>6/24</strong></div>
+      <div class="milestone-label">模具开发<div class="sub">预计一个月内出模具 · 模具到大货仅10天窗口</div></div>
+      <div class="milestone-date">预计 <strong>5/14-6/24</strong></div>
       <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
-      <div class="milestone-status"><span class="dot pending"></span><span>待开始</span></div>
+      <div class="milestone-status"><span class="dot pending"></span><span>未开始</span></div>
+    </div>
+    <div class="milestone-row" style="background:rgba(239,68,68,0.06);margin:0 -16px;padding:14px 16px;border-radius:8px;">
+      <div class="milestone-label">大货生产完成<div class="sub" style="color:#ef4444;">🔴 钢丝软硬度不对需调整，预计下周一(6/1)出样</div></div>
+      <div class="milestone-date">延期至 <strong>6/1</strong></div>
+      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:60%"></div></div>
+      <div class="milestone-status"><span class="dot waiting"></span><span>延期</span></div>
     </div>
   </div>
   <div class="notes-section">
     <div class="note">
       <span class="icon">⚠</span>
-      <span><strong>关注点：</strong>模具开发周期约 1 个月，建议 5 月底（5/28 左右）跟进一次模具进度。从模具完成到大货出货仅 10 天窗口，需确认供应商产能是否充足。</span>
+      <span><strong>关注点：</strong>模具开发周期约 1 个月，从模具完成到大货仅 10 天窗口。T2.3 延期项标注了钢丝软硬度问题（疑似指套产品的跨产品数据写在振动棒条目下，请确认在线表格数据归属）。</span>
     </div>
   </div>
 </div>
@@ -389,26 +390,26 @@
       <div class="product-icon p3">👆</div>
       <div>
         <div class="product-name">产品三：指套震动玩具</div>
-        <div class="product-sub">Finger Vibrator Toy — 结构开发 + 开模 + 样品</div>
+        <div class="product-sub">Finger Vibrator Toy — 结构开发 + 开模</div>
       </div>
     </div>
     <div class="status-badge waiting">开发中</div>
   </div>
   <div class="progress-section">
-    <div class="milestone-row active">
-      <div class="milestone-label">内部结构设计 &amp; 钢丝开模<div class="sub">核心结构件需新开模具</div></div>
-      <div class="milestone-date">截止 <strong>5/25 今日出样</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:90%"></div></div>
-      <div class="milestone-status"><span class="dot active"></span><span>进行中</span></div>
-    </div>
     <div class="milestone-row">
-      <div class="milestone-label">样品确认 &amp; 反馈</div>
+      <div class="milestone-label">内部结构设计 &amp; 钢丝开模<div class="sub">核心结构件需新开模具 · 待出样后排期</div></div>
       <div class="milestone-date">待定</div>
       <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
       <div class="milestone-status"><span class="dot pending"></span><span>待开始</span></div>
     </div>
     <div class="milestone-row">
-      <div class="milestone-label">开大货模具 &amp; 生产</div>
+      <div class="milestone-label">样品确认 &amp; 反馈<div class="sub">待出样后排期</div></div>
+      <div class="milestone-date">待定</div>
+      <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
+      <div class="milestone-status"><span class="dot pending"></span><span>待开始</span></div>
+    </div>
+    <div class="milestone-row">
+      <div class="milestone-label">开大货模具 &amp; 生产<div class="sub">待样品确认后排期</div></div>
       <div class="milestone-date">待定</div>
       <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
       <div class="milestone-status"><span class="dot pending"></span><span>待开始</span></div>
@@ -416,8 +417,8 @@
   </div>
   <div class="notes-section">
     <div class="note">
-      <span class="icon">⚠</span>
-      <span><strong>今日跟进：</strong>5/25 是钢丝开模样品的预计完成日，今天需主动联系供应商确认样品出样进度。该产品处于最早开发阶段，后续节点（大货模具、生产周期）待样品确认后再排期。</span>
+      <span class="icon">🔴</span>
+      <span><strong>延期预警：</strong>钢丝开模因钢丝软硬度不对需要调整，已延期至下周一（6/1）。该产品处于最早开发阶段，后续节点（样品确认、大货模具、生产周期）待出样后再排期。注：钢丝延期数据出现在在线表格 T2.3（产品2）行中，可能为跨产品数据录入，建议确认。</span>
     </div>
   </div>
 </div>
@@ -429,7 +430,7 @@
     <div class="key-date-item">
       <div class="product">🧴 可舔食润滑油</div>
       <div class="event">FDA品牌名修正</div>
-      <div class="date-val urgent">今日 5/28</div>
+      <div class="date-val urgent">处理中</div>
     </div>
     <div class="key-date-item">
       <div class="product">🧴 可舔食润滑油</div>
@@ -438,30 +439,30 @@
     </div>
     <div class="key-date-item">
       <div class="product">🧴 可舔食润滑油</div>
-      <div class="event">产品打样启动</div>
+      <div class="event">产品打样</div>
       <div class="date-val soon">5/25 - 6/5</div>
     </div>
     <div class="key-date-item">
       <div class="product">🧴 可舔食润滑油</div>
       <div class="event">时光映画设计对接</div>
-      <div class="date-val soon">5/25 - 5/29</div>
+      <div class="date-val done">实际完成 6/2</div>
     </div>
     <div class="key-date-item">
       <div class="product">👆 指套震动玩具</div>
       <div class="event">钢丝开模样品确认</div>
-      <div class="date-val urgent">5/25 已过，需确认</div>
+      <div class="date-val soon">延期至 6/1</div>
     </div>
     <div class="key-date-item">
       <div class="product">🐰 兔子振动棒</div>
-      <div class="event">模具进度跟进</div>
-      <div class="date-val normal">今日 5/28</div>
+      <div class="event">模具开发进度跟进</div>
+      <div class="date-val normal">持续关注</div>
     </div>
   </div>
 </div>
 
 <br>
 <div style="text-align:center;color:var(--text-muted);font-size:12px;padding:16px 0;">
-  本表由 Jeff 自动同步生成 · 数据来源：腾讯文档在线表格 · 上次同步：2026-05-28 11:14
+  本表由 Jeff 自动同步生成 · 数据来源：腾讯文档在线表格 · 上次同步：2026-05-29 10:30
 </div>
 
 </body>
