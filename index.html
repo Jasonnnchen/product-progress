@@ -6,65 +6,35 @@
 <title>如水科技 - 亚马逊产品开发进度表</title>
 <style>
   :root {
-    --bg: #0f1117;
-    --card: #1a1d27;
-    --card-border: #2a2d3a;
-    --text: #e4e4e7;
-    --text-muted: #8b8d97;
-    --accent: #f97316;
-    --accent-light: #fb923c;
-    --green: #22c55e;
-    --green-bg: rgba(34,197,94,0.1);
-    --yellow: #eab308;
-    --yellow-bg: rgba(234,179,8,0.1);
-    --red: #ef4444;
-    --red-bg: rgba(239,68,68,0.1);
-    --blue: #3b82f6;
-    --blue-bg: rgba(59,130,246,0.1);
-    --purple: #a855f7;
-    --purple-bg: rgba(168,85,247,0.1);
+    --bg: #0f1117; --card: #1a1d27; --card-border: #2a2d3a;
+    --text: #e4e4e7; --text-muted: #8b8d97; --accent: #f97316; --accent-light: #fb923c;
+    --green: #22c55e; --green-bg: rgba(34,197,94,0.1);
+    --yellow: #eab308; --yellow-bg: rgba(234,179,8,0.1);
+    --red: #ef4444; --red-bg: rgba(239,68,68,0.1);
+    --blue: #3b82f6; --blue-bg: rgba(59,130,246,0.1);
+    --purple: #a855f7; --purple-bg: rgba(168,85,247,0.1);
+    --edit-bg: #1e2230;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    background: var(--bg);
-    color: var(--text);
+    background: var(--bg); color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    padding: 32px;
-    min-height: 100vh;
+    padding: 32px; min-height: 100vh;
   }
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 32px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--card-border);
-  }
-  .header h1 {
-    font-size: 24px;
-    font-weight: 700;
-    color: #fff;
-  }
-  .header .date {
-    font-size: 14px;
-    color: var(--text-muted);
-    background: var(--card);
-    padding: 6px 14px;
-    border-radius: 8px;
-    border: 1px solid var(--card-border);
-  }
-  .stats-bar {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-  .stat-card {
-    background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: 12px;
-    padding: 20px;
-  }
+  .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .topbar h1 { font-size: 24px; font-weight: 700; color: #fff; }
+  .topbar .tools { display: flex; gap: 10px; align-items: center; }
+  .topbar .tools .date { font-size: 13px; color: var(--text-muted); margin-right: 8px; }
+  .btn { font-size: 13px; font-weight: 600; padding: 7px 16px; border-radius: 8px; cursor: pointer; border: 1px solid var(--card-border); background: var(--card); color: var(--text); transition: all 0.15s; }
+  .btn:hover { border-color: var(--accent); color: #fff; }
+  .btn.accent { background: var(--accent); border-color: var(--accent); color: #000; }
+  .btn.accent:hover { background: var(--accent-light); }
+  .btn.small { font-size: 11px; padding: 3px 8px; }
+  .edit-mode-indicator { display: none; font-size: 11px; color: var(--accent); background: rgba(249,115,22,0.1); padding: 3px 8px; border-radius: 4px; margin-left: 4px; }
+  .edit-mode-indicator.active { display: inline; }
+
+  .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; margin-top: 16px; }
+  .stat-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 20px; }
   .stat-card .label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
   .stat-card .value { font-size: 28px; font-weight: 700; }
   .stat-card .value.green { color: var(--green); }
@@ -72,90 +42,47 @@
   .stat-card .value.red { color: var(--red); }
   .stat-card .value.blue { color: var(--blue); }
 
-  .product-card {
-    background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    margin-bottom: 24px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
+  .product-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; margin-bottom: 24px; overflow: hidden; transition: border-color 0.2s; }
   .product-card:hover { border-color: var(--accent); }
-  .product-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 28px 16px;
-  }
+  .product-header { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px 16px; }
   .product-header .left { display: flex; align-items: center; gap: 16px; }
-  .product-icon {
-    width: 44px; height: 44px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-  }
+  .product-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
   .product-icon.p1 { background: var(--blue-bg); color: var(--blue); }
   .product-icon.p2 { background: var(--purple-bg); color: var(--purple); }
   .product-icon.p3 { background: var(--yellow-bg); color: var(--yellow); }
   .product-name { font-size: 18px; font-weight: 600; color: #fff; }
   .product-sub { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
-  .status-badge {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 5px 14px;
-    border-radius: 20px;
-  }
+  .product-sub input { background: var(--edit-bg); border: 1px solid var(--card-border); color: var(--text); border-radius: 4px; padding: 2px 6px; font-size: 12px; width: 180px; }
+  .status-badge { font-size: 12px; font-weight: 600; padding: 5px 14px; border-radius: 20px; }
   .status-badge.in-progress { background: var(--blue-bg); color: var(--blue); }
   .status-badge.on-track { background: var(--green-bg); color: var(--green); }
   .status-badge.waiting { background: var(--yellow-bg); color: var(--yellow); }
+  .status-badge select { background: transparent; border: none; color: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
 
-  /* Progress section */
   .progress-section { padding: 0 28px 24px; }
-  .milestone-row {
-    display: grid;
-    grid-template-columns: 200px 120px 1fr 140px;
-    gap: 16px;
-    align-items: center;
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(42,45,58,0.6);
-    position: relative;
-  }
+  .milestone-row { display: grid; grid-template-columns: 200px 140px 1fr 140px; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(42,45,58,0.6); position: relative; }
   .milestone-row:last-child { border-bottom: none; }
   .milestone-row.completed { opacity: 0.55; }
   .milestone-row.active { background: rgba(249,115,22,0.04); margin: 0 -16px; padding: 14px 16px; border-radius: 8px; }
+  .milestone-row.fda-issue { background: rgba(239,68,68,0.06); margin: 0 -16px; padding: 14px 16px; border-radius: 8px; }
+  .milestone-row.editing { background: rgba(59,130,246,0.08); margin: 0 -16px; padding: 14px 16px; border-radius: 8px; border: 1px dashed var(--blue); }
 
   .milestone-label { font-size: 14px; font-weight: 500; }
   .milestone-label .sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-  .milestone-date {
-    font-size: 13px;
-    color: var(--text-muted);
-    font-variant-numeric: tabular-nums;
-  }
+  .milestone-label .sub.red { color: var(--red); }
+  .milestone-date { font-size: 13px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
   .milestone-date strong { color: var(--text); font-weight: 600; }
+  .milestone-date.editing { display: flex; flex-direction: column; gap: 3px; }
 
-  .progress-bar-wrap {
-    height: 6px;
-    background: rgba(42,45,58,0.8);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  .progress-bar {
-    height: 100%;
-    border-radius: 3px;
-    transition: width 0.5s ease;
-  }
+  .progress-bar-wrap { height: 6px; background: rgba(42,45,58,0.8); border-radius: 3px; overflow: hidden; }
+  .progress-bar { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
   .progress-bar.done { background: var(--green); }
   .progress-bar.active { background: var(--accent); }
   .progress-bar.pending { background: rgba(42,45,58,0.8); }
   .progress-bar.applied { background: var(--blue); }
 
   .milestone-status { text-align: right; }
-  .milestone-status .dot {
-    display: inline-block;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    margin-right: 6px;
-  }
+  .milestone-status .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
   .dot.done { background: var(--green); }
   .dot.active { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
   .dot.pending { background: var(--text-muted); opacity: 0.4; }
@@ -163,54 +90,41 @@
   .dot.waiting { background: var(--yellow); box-shadow: 0 0 8px var(--yellow); }
   .milestone-status span { font-size: 12px; color: var(--text-muted); }
 
-  /* Risk / Notes */
-  .notes-section {
-    padding: 0 28px 24px;
-  }
-  .notes-section .note {
-    background: rgba(234,179,8,0.06);
-    border: 1px solid rgba(234,179,8,0.15);
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: var(--yellow);
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
+  /* Inline edit controls */
+  .edit-input { background: var(--edit-bg); border: 1px solid var(--blue); color: var(--text); border-radius: 4px; padding: 3px 8px; font-size: 12px; font-family: inherit; width: 100%; }
+  .edit-select { background: var(--edit-bg); border: 1px solid var(--blue); color: var(--text); border-radius: 4px; padding: 3px 6px; font-size: 12px; font-family: inherit; cursor: pointer; }
+  .edit-textarea { background: var(--edit-bg); border: 1px solid var(--blue); color: var(--text); border-radius: 4px; padding: 4px 8px; font-size: 12px; font-family: inherit; resize: vertical; width: 100%; min-height: 24px; }
+  .edit-btn-row { display: flex; gap: 4px; margin-top: 4px; justify-content: flex-end; }
+  .edit-btn { font-size: 10px; padding: 2px 8px; border-radius: 4px; cursor: pointer; border: 1px solid var(--card-border); }
+  .edit-btn.save { background: var(--green); border-color: var(--green); color: #000; font-weight: 600; }
+  .edit-btn.cancel { background: transparent; color: var(--text-muted); }
+  .add-milestone { display: none; width: 100%; margin-top: 10px; padding: 10px; border: 1px dashed var(--card-border); border-radius: 8px; text-align: center; cursor: pointer; color: var(--text-muted); font-size: 13px; background: transparent; }
+  .add-milestone:hover { border-color: var(--accent); color: var(--accent); }
+  .add-milestone.show { display: block; }
+  .add-note { display: none; width: 100%; margin-top: 8px; padding: 8px; border: 1px dashed var(--card-border); border-radius: 8px; text-align: center; cursor: pointer; color: var(--text-muted); font-size: 12px; background: transparent; }
+  .add-note:hover { border-color: var(--accent); color: var(--accent); }
+  .add-note.show { display: block; }
+  .delete-milestone { display: none; cursor: pointer; font-size: 12px; color: var(--red); opacity: 0.6; position: absolute; right: -24px; top: 50%; transform: translateY(-50%); }
+  .delete-milestone:hover { opacity: 1; }
+  .delete-milestone.show { display: inline; }
+  .delete-note { display: none; cursor: pointer; font-size: 11px; color: var(--red); opacity: 0.6; margin-left: 8px; }
+  .delete-note:hover { opacity: 1; }
+  .delete-note.show { display: inline; }
+
+  .notes-section { padding: 0 28px 24px; }
+  .notes-section .note { background: rgba(234,179,8,0.06); border: 1px solid rgba(234,179,8,0.15); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: var(--yellow); display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
   .notes-section .note:last-child { margin-bottom: 0; }
   .notes-section .note .icon { font-size: 14px; margin-top: 1px; }
-  .notes-section .note.blue {
-    background: rgba(59,130,246,0.06);
-    border-color: rgba(59,130,246,0.15);
-    color: var(--blue);
-  }
-  .notes-section .note.green {
-    background: rgba(34,197,94,0.06);
-    border-color: rgba(34,197,94,0.15);
-    color: var(--green);
-  }
+  .notes-section .note.blue { background: rgba(59,130,246,0.06); border-color: rgba(59,130,246,0.15); color: var(--blue); }
+  .notes-section .note.green { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.15); color: var(--green); }
+  .notes-section .note.red { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.3); color: var(--red); }
+  .notes-section .note textarea { background: var(--edit-bg); border: 1px solid var(--blue); color: var(--text); border-radius: 4px; padding: 6px 10px; font-size: 12px; font-family: inherit; width: 100%; resize: vertical; min-height: 40px; }
+  .note-type-select { background: var(--edit-bg); border: 1px solid var(--blue); color: var(--text); border-radius: 4px; padding: 2px 6px; font-size: 11px; cursor: pointer; }
 
-  /* Key dates summary */
-  .key-dates {
-    background: var(--card);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 24px 28px;
-    margin-top: 8px;
-  }
+  .key-dates { background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; padding: 24px 28px; margin-top: 8px; }
   .key-dates h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 16px; }
-  .key-date-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-  .key-date-item {
-    background: rgba(42,45,58,0.4);
-    border-radius: 10px;
-    padding: 16px;
-  }
+  .key-date-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .key-date-item { background: rgba(42,45,58,0.4); border-radius: 10px; padding: 16px; }
   .key-date-item .product { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
   .key-date-item .event { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 6px; }
   .key-date-item .date-val { font-size: 13px; font-weight: 600; }
@@ -219,251 +133,501 @@
   .key-date-item .date-val.normal { color: var(--green); }
   .key-date-item .date-val.done { color: var(--green); }
 
+  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--card); border: 1px solid var(--green); color: var(--green); padding: 12px 20px; border-radius: 10px; font-size: 13px; opacity: 0; transition: opacity 0.3s; z-index: 999; }
+  .toast.show { opacity: 1; }
+
+  .footer { text-align: center; color: var(--text-muted); font-size: 12px; padding: 16px 0; }
+
   @media (max-width: 900px) {
     body { padding: 16px; }
     .stats-bar { grid-template-columns: repeat(2, 1fr); }
     .milestone-row { grid-template-columns: 1fr; gap: 8px; }
     .key-date-grid { grid-template-columns: 1fr; }
+    .topbar { flex-direction: column; align-items: flex-start; gap: 10px; }
   }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>如水科技 · 亚马逊产品开发进度表</h1>
-  <div class="date">更新时间：2026-05-29 10:30</div>
-</div>
-
-<!-- 概览统计 -->
-<div class="stats-bar">
-  <div class="stat-card">
-    <div class="label">产品总数</div>
-    <div class="value blue">3</div>
-  </div>
-  <div class="stat-card">
-    <div class="label">活跃任务</div>
-    <div class="value yellow">7</div>
-  </div>
-  <div class="stat-card">
-    <div class="label">近期关键节点</div>
-    <div class="value" style="color:var(--accent)">6</div>
-  </div>
-  <div class="stat-card">
-    <div class="label">风险项</div>
-    <div class="value red">4</div>
+<div class="topbar">
+  <h1>如水科技 · 亚马逊产品开发进度表 <span class="edit-mode-indicator" id="editIndicator">编辑中</span></h1>
+  <div class="tools">
+    <span class="date" id="updateTime">更新时间：2026-06-04</span>
+    <button class="btn" id="editToggle" onclick="toggleEdit()">✏️ 编辑</button>
+    <button class="btn" onclick="downloadMD()">📥 导出数据</button>
+    <button class="btn" onclick="reloadData()">🔄 重置</button>
   </div>
 </div>
 
-<!-- 产品1：可舔食润滑油 -->
-<div class="product-card">
-  <div class="product-header">
-    <div class="left">
-      <div class="product-icon p1">🧴</div>
-      <div>
-        <div class="product-name">产品一：可舔食润滑油</div>
-        <div class="product-sub">Edible Lubricant — 包材生产 + FDA列名</div>
+<div id="app"></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ============ DATA MODEL ============
+const STORAGE_KEY = 'rushui_dashboard_data';
+
+const DEFAULT_DATA = {
+  updatedAt: '2026-06-04 13:52',
+  keyDates: [
+    { product: '🧴 可舔食润滑油', event: 'FDA品牌名修正', date: '处理中', cls: 'urgent' },
+    { product: '🧴 可舔食润滑油', event: 'FDA列名预计完成', date: '6/4 - 6/7', cls: 'soon' },
+    { product: '🧴 可舔食润滑油', event: '产品打样', date: '5/25 - 6/5', cls: 'soon' },
+    { product: '🧴 可舔食润滑油', event: '时光映画设计对接', date: '实际完成 6/2', cls: 'done' },
+    { product: '👆 指套震动玩具', event: '钢丝开模样品确认', date: '延期至 6/1', cls: 'soon' },
+    { product: '🐰 兔子振动棒', event: '模具开发进度跟进', date: '持续关注', cls: 'normal' }
+  ],
+  products: [
+    {
+      id: 1, icon: '🧴', iconClass: 'p1',
+      name: '产品一：可舔食润滑油', enName: 'Edible Lubricant',
+      stage: '包材生产 + FDA列名', statusLabel: '推进中', statusKey: 'on-track',
+      milestones: [
+        { id: 'T1.1', label: '签订合同 & 付款定金', desc: '50% 定金已付', startDate: '5/12', endDate: '5/12', actualDate: '5/12', status: 'completed', progress: 100 },
+        { id: 'T1.2', label: '供应商确认下单', desc: '已反馈生产周期', startDate: '5/15', endDate: '5/15', actualDate: '5/15', status: 'completed', progress: 100 },
+        { id: 'T1.4', label: 'FDA 列名申请', desc: '品牌名填错，今日输出正确信息给机构修改', descHighlight: true, startDate: '5/15', endDate: '6/4-6/7', actualDate: '5/15', status: 'in_progress', progress: 35, highlight: 'red' },
+        { id: 'T1.5', label: 'FDA 列名审批通过', desc: '品牌名修正后 7-10 天完成，需持续关注', startDate: '5/22', endDate: '6/4-6/7', actualDate: '', status: 'waiting', progress: 0 },
+        { id: 'T1.9', label: '产品打样', desc: '荔枝樱桃各三种配比 · 出大货前持续调整', startDate: '5/25', endDate: '6/5', actualDate: '', status: 'in_progress', progress: 35 },
+        { id: 'T1.10', label: '时光映画设计对接', desc: '2套主图A+和一组品牌故事 · 已签已付50%定金', startDate: '5/21', endDate: '5/25', actualDate: '6/2', status: 'in_progress', progress: 85 },
+        { id: 'T1.6', label: '软管包材生产完成', desc: '生产周期约 28 天 · 建议每周确认一次', startDate: '5/15', endDate: '6/12', actualDate: '', status: 'in_progress', progress: 45 },
+        { id: 'T1.7', label: '液体调制 + 装瓶打包出货', desc: '包材到位后约 7 天', startDate: '6/12', endDate: '6/19', actualDate: '', status: 'pending', progress: 0 },
+        { id: 'T1.8', label: '申请第5类商标', desc: '出货后第一时间提交 · 品牌保护', startDate: '6/19', endDate: '', actualDate: '', status: 'pending', progress: 0 }
+      ],
+      notes: [
+        { type: 'red', icon: '🔴', text: '供应商列名时品牌名填错！正在处理中，今日输出正确的品牌信息给 FDA 机构修改。列名修正后预计 7-10 天（约 6/4-6/7）完成。此问题直接影响后续出货时间线，需持续跟进机构反馈。' },
+        { type: 'yellow', icon: '⚠️', text: '持续关注：FDA 列名品牌名修正进度，7-10 天内跟进机构修改结果。如修正延迟可能影响包材生产和后续出货节奏。' },
+        { type: 'red', icon: '🚨', text: '重要！产品出货后务必申请第 5 类商标！润滑油属于第 5 类（药品/卫生制剂），品牌保护必不可少，建议出货后第一时间提交商标注册，避免被抢注。' },
+        { type: 'blue', icon: 'ℹ️', text: '并行推进：产品打样（荔枝樱桃各三种配比，出大货前持续调整）和时光映画设计对接（已签已付50%定金，实际完成6/2）均已启动。软管包材已开始生产，建议每周确认一次进度。' }
+      ]
+    },
+    {
+      id: 2, icon: '🐰', iconClass: 'p2',
+      name: '产品二：双层包胶兔子振动棒', enName: 'Dual-layer Silicone Rabbit Vibrator',
+      stage: '模具开发', statusLabel: '模具阶段', statusKey: 'in-progress',
+      milestones: [
+        { id: 'T2.1', label: '合同签订 & 模具定金', desc: '模具费用已付 · 约1个月', startDate: '5/14', endDate: '5/14', actualDate: '5/14', status: 'completed', progress: 100 },
+        { id: 'T2.2', label: '模具开发', desc: '预计一个月内出模具', startDate: '5/14', endDate: '6/14', actualDate: '', status: 'in_progress', progress: 60 },
+        { id: 'T2.3', label: '大货生产完成', desc: '模具到大货仅10天窗口', startDate: '6/14', endDate: '6/24', actualDate: '', status: 'pending', progress: 0 }
+      ],
+      notes: [
+        { type: 'yellow', icon: '⚠️', text: '关注点：模具开发周期约 1 个月，从模具完成到大货仅 10 天窗口。当前阶段需定期跟进模具进度。' }
+      ]
+    },
+    {
+      id: 3, icon: '👆', iconClass: 'p3',
+      name: '产品三：指套震动玩具', enName: 'Finger Vibrator Toy',
+      stage: '结构开发 + 开模', statusLabel: '开发中', statusKey: 'waiting',
+      milestones: [
+        { id: 'T3.1', label: '内部结构设计 & 钢丝开模', desc: '核心结构件需新开模具 · 钢丝软硬度不对需调整，延期至下周一(6/1)', startDate: '5/1', endDate: '6/1', actualDate: '', status: 'in_progress', progress: 60, highlight: 'red' },
+        { id: 'T3.2', label: '样品确认 & 反馈', desc: '待出样后排期', startDate: '', endDate: '', actualDate: '', status: 'pending', progress: 0 },
+        { id: 'T3.3', label: '开大货模具 & 生产', desc: '待样品确认后排期', startDate: '', endDate: '', actualDate: '', status: 'pending', progress: 0 }
+      ],
+      notes: [
+        { type: 'red', icon: '🔴', text: '延期预警：钢丝开模因钢丝软硬度不对需要调整，已延期。该产品处于最早开发阶段，后续节点（样品确认、大货模具、生产周期）待出样后再排期。' }
+      ]
+    }
+  ]
+};
+
+let data = JSON.parse(JSON.stringify(DEFAULT_DATA));
+let isEditing = false;
+let editingCell = null;
+
+// ============ LOAD / SAVE ============
+function loadData() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      // merge with defaults so new fields always exist
+      data = deepMerge(DEFAULT_DATA, parsed);
+      return true;
+    }
+  } catch(e) { console.warn('Failed to load saved data'); }
+  data = JSON.parse(JSON.stringify(DEFAULT_DATA));
+  return false;
+}
+
+function saveData() {
+  data.updatedAt = new Date().toLocaleString('zh-CN', { hour12: false }).replace(/\//g, '-');
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  document.getElementById('updateTime').textContent = '更新时间：' + data.updatedAt;
+}
+
+function reloadData() {
+  if (isEditing) { toggleEdit(); }
+  if (confirm('确认重置所有数据为默认值？此操作不可撤销。')) {
+    data = JSON.parse(JSON.stringify(DEFAULT_DATA));
+    saveData();
+    render();
+  }
+}
+
+function deepMerge(base, override) {
+  const result = JSON.parse(JSON.stringify(base));
+  if (!override) return result;
+  for (const key of Object.keys(override)) {
+    if (override[key] && typeof override[key] === 'object' && !Array.isArray(override[key]) && base[key]) {
+      result[key] = deepMerge(base[key], override[key]);
+    } else {
+      result[key] = override[key];
+    }
+  }
+  return result;
+}
+
+// ============ TOAST ============
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ============ EDIT MODE ============
+function toggleEdit() {
+  isEditing = !isEditing;
+  editingCell = null;
+  document.getElementById('editToggle').textContent = isEditing ? '✅ 完成编辑' : '✏️ 编辑';
+  document.getElementById('editToggle').classList.toggle('accent', isEditing);
+  document.getElementById('editIndicator').classList.toggle('active', isEditing);
+  render();
+  if (!isEditing) showToast('✅ 数据已保存');
+}
+
+// ============ RENDER ============
+function render() {
+  const app = document.getElementById('app');
+  let riskCount = 0, activeCount = 0, keyCount = data.keyDates.length;
+
+  // Stats
+  data.products.forEach(p => {
+    p.milestones.forEach(m => {
+      if (['in_progress'].includes(m.status)) activeCount++;
+      if (m.highlight === 'red') riskCount++;
+    });
+    p.notes.forEach(n => { if (n.type === 'red') riskCount++; });
+  });
+
+  let html = '';
+
+  // Stats bar
+  html += `<div class="stats-bar">
+    <div class="stat-card"><div class="label">产品总数</div><div class="value blue">${data.products.length}</div></div>
+    <div class="stat-card"><div class="label">活跃任务</div><div class="value yellow">${activeCount}</div></div>
+    <div class="stat-card"><div class="label">近期关键节点</div><div class="value" style="color:var(--accent)">${keyCount}</div></div>
+    <div class="stat-card"><div class="label">风险项</div><div class="value red">${riskCount}</div></div>
+  </div>`;
+
+  // Product cards
+  data.products.forEach((p, pi) => {
+    html += renderProductCard(p, pi);
+  });
+
+  // Key dates
+  html += renderKeyDates();
+
+  // Footer
+  html += `<div class="footer">本表由 Jeff 自动同步生成 · 数据来源：腾讯文档在线表格 · 上次同步：${data.updatedAt}</div>`;
+
+  app.innerHTML = html;
+
+  // Attach event listeners
+  if (isEditing) attachEditListeners();
+}
+
+function renderProductCard(p, pi) {
+  let html = `<div class="product-card">
+    <div class="product-header">
+      <div class="left">
+        <div class="product-icon ${p.iconClass}">${p.icon}</div>
+        <div>
+          <div class="product-name">${isEditing ? '<input class="edit-input" style="width:200px" data-path="products.'+pi+'.name" value="'+esc(p.name)+'">' : p.name}</div>
+          <div class="product-sub">${isEditing ? '<input class="edit-input" data-path="products.'+pi+'.enName" value="'+esc(p.enName)+'">' + ' — ' + '<input class="edit-input" style="width:200px" data-path="products.'+pi+'.stage" value="'+esc(p.stage)+'">' : p.enName + ' — ' + p.stage}</div>
+        </div>
       </div>
+      <div class="status-badge ${p.statusKey}">${p.statusLabel}</div>
     </div>
-    <div class="status-badge on-track">推进中</div>
-  </div>
-  <div class="progress-section">
-    <div class="milestone-row completed">
-      <div class="milestone-label">签订合同 &amp; 付款定金<div class="sub">50% 定金已付</div></div>
-      <div class="milestone-date"><strong>5/12</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar done" style="width:100%"></div></div>
-      <div class="milestone-status"><span class="dot done"></span><span>已完成</span></div>
-    </div>
-    <div class="milestone-row completed">
-      <div class="milestone-label">供应商确认下单<div class="sub">已反馈生产周期</div></div>
-      <div class="milestone-date"><strong>5/15</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar done" style="width:100%"></div></div>
-      <div class="milestone-status"><span class="dot done"></span><span>已完成</span></div>
-    </div>
+    <div class="progress-section">`;
 
-    <div class="milestone-row" style="background:rgba(239,68,68,0.06);margin:0 -16px;padding:14px 16px;border-radius:8px;">
-      <div class="milestone-label">FDA 列名申请<div class="sub" style="color:#ef4444;">🔴 品牌名填错，今日输出正确信息给机构修改</div></div>
-      <div class="milestone-date">预计完成 <strong>6/4-6/7</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:35%"></div></div>
-      <div class="milestone-status"><span class="dot active"></span><span>进行中</span></div>
-    </div>
-    <div class="milestone-row active">
-      <div class="milestone-label">FDA 列名审批通过<div class="sub">品牌名修正后 7-10 天完成，需持续关注</div></div>
-      <div class="milestone-date">预计 <strong>6/4-6/7</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
-      <div class="milestone-status"><span class="dot waiting"></span><span>等待中</span></div>
-    </div>
-    <div class="milestone-row active">
-      <div class="milestone-label">产品打样<div class="sub">荔枝樱桃各三种配比 · 出大货前持续调整</div></div>
-      <div class="milestone-date">预计 <strong>5/25-6/5</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:35%"></div></div>
-      <div class="milestone-status"><span class="dot active"></span><span>已开始</span></div>
-    </div>
-    <div class="milestone-row active">
-      <div class="milestone-label">时光映画设计对接<div class="sub">2套主图A+和一组品牌故事 · 已签已付50%定金</div></div>
-      <div class="milestone-date">预计 <strong>5/21-5/25</strong> · 实际完成 <strong>6/2</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:85%"></div></div>
-      <div class="milestone-status"><span class="dot active"></span><span>进行中</span></div>
-    </div>
-    <div class="milestone-row">
-      <div class="milestone-label">软管包材生产完成<div class="sub">生产周期约 28 天 · 建议每周确认一次</div></div>
-      <div class="milestone-date">预计 <strong>6/12</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:45%"></div></div>
-      <div class="milestone-status"><span class="dot active"></span><span>进行中</span></div>
-    </div>
-    <div class="milestone-row">
-      <div class="milestone-label">液体调制 + 装瓶打包出货<div class="sub">包材到位后约 7 天</div></div>
-      <div class="milestone-date">预计 <strong>6/12-6/19</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
-      <div class="milestone-status"><span class="dot pending"></span><span>待开始</span></div>
-    </div>
-    <div class="milestone-row">
-      <div class="milestone-label">申请第5类商标<div class="sub">出货后第一时间提交 · 品牌保护</div></div>
-      <div class="milestone-date">预计 <strong>6/19 后</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
-      <div class="milestone-status"><span class="dot pending"></span><span>待开始</span></div>
-    </div>
-  </div>
-  <div class="notes-section">
-    <div class="note" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--red);">
-      <span class="icon">🔴</span>
-      <span><strong>供应商列名时品牌名填错！</strong>正在处理中，今日（5/29）输出正确的品牌信息给 FDA 机构修改。列名修正后预计 <strong>7-10 天</strong>（约 6/4-6/7）完成。此问题直接影响后续出货时间线，需持续跟进机构反馈。</span>
-    </div>
-    <div class="note">
-      <span class="icon">⚠</span>
-      <span><strong>持续关注：</strong>FDA 列名品牌名修正进度，7-10 天内跟进机构修改结果。如修正延迟可能影响包材生产和后续出货节奏。</span>
-    </div>
-    <div class="note" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--red);">
-      <span class="icon">🚨</span>
-      <span><strong>重要！产品出货后务必申请第 5 类商标！</strong>润滑油属于第 5 类（药品/卫生制剂），品牌保护必不可少，建议出货后第一时间提交商标注册，避免被抢注。</span>
-    </div>
-    <div class="note blue">
-      <span class="icon">ℹ</span>
-      <span><strong>并行推进：</strong>产品打样（荔枝樱桃各三种配比，出大货前持续调整）和时光映画设计对接（已签已付50%定金，实际完成6/2）均已启动。软管包材已开始生产，建议每周确认一次进度。</span>
-    </div>
-  </div>
-</div>
+  p.milestones.forEach((m, mi) => {
+    html += renderMilestone(p, pi, m, mi);
+  });
 
-<!-- 产品2：双层包胶兔子振动棒 -->
-<div class="product-card">
-  <div class="product-header">
-    <div class="left">
-      <div class="product-icon p2">🐰</div>
-      <div>
-        <div class="product-name">产品二：双层包胶兔子振动棒</div>
-        <div class="product-sub">Dual-layer Silicone Rabbit Vibrator — 模具开发</div>
+  if (isEditing) {
+    html += `<button class="add-milestone show" onclick="addMilestone(${pi})">+ 新增里程碑</button>`;
+  }
+
+  html += `</div><div class="notes-section">`;
+
+  p.notes.forEach((n, ni) => {
+    html += renderNote(p, pi, n, ni);
+  });
+
+  if (isEditing) {
+    html += `<button class="add-note show" onclick="addNote(${pi})">+ 新增备注</button>`;
+  }
+
+  html += `</div></div>`;
+  return html;
+}
+
+function renderMilestone(p, pi, m, mi) {
+  const statusMap = { completed: ['done', '已完成'], in_progress: ['active', '进行中'], pending: ['pending', '待开始'], waiting: ['waiting', '等待中'] };
+  const [dotClass, statusLabel] = statusMap[m.status] || ['pending', '待开始'];
+  
+  let rowClass = '';
+  if (m.status === 'completed') rowClass = 'completed';
+  else if (m.status === 'in_progress' && m.highlight !== 'red') rowClass = 'active';
+  else if (m.highlight === 'red') rowClass = 'fda-issue';
+  
+  let descClass = '';
+  if (m.descHighlight || m.highlight === 'red') descClass = 'red';
+
+  if (isEditing) {
+    // Editable row
+    return `<div class="milestone-row ${rowClass}" style="position:relative">
+      <span class="delete-milestone show" onclick="deleteMilestone(${pi},${mi})" title="删除此里程碑">✕</span>
+      <div class="milestone-label">
+        <input class="edit-input" data-path="products.${pi}.milestones.${mi}.label" value="${esc(m.label)}">
+        <div class="sub ${descClass}"><input class="edit-input" style="margin-top:3px" data-path="products.${pi}.milestones.${mi}.desc" value="${esc(m.desc)}"></div>
       </div>
-    </div>
-    <div class="status-badge in-progress">模具阶段</div>
-  </div>
-  <div class="progress-section">
-    <div class="milestone-row active">
-      <div class="milestone-label">合同签订 &amp; 模具定金<div class="sub">模具费用已付 · 约1个月</div></div>
-      <div class="milestone-date">预计 <strong>5/14-6/14</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:45%"></div></div>
-      <div class="milestone-status"><span class="dot active"></span><span>进行中</span></div>
-    </div>
-    <div class="milestone-row">
-      <div class="milestone-label">模具开发<div class="sub">预计一个月内出模具 · 模具到大货仅10天窗口</div></div>
-      <div class="milestone-date">预计 <strong>5/14-6/24</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
-      <div class="milestone-status"><span class="dot pending"></span><span>未开始</span></div>
-    </div>
-    <div class="milestone-row" style="background:rgba(239,68,68,0.06);margin:0 -16px;padding:14px 16px;border-radius:8px;">
-      <div class="milestone-label">大货生产完成<div class="sub" style="color:#ef4444;">🔴 钢丝软硬度不对需调整，预计下周一(6/1)出样</div></div>
-      <div class="milestone-date">延期至 <strong>6/1</strong></div>
-      <div class="progress-bar-wrap"><div class="progress-bar active" style="width:60%"></div></div>
-      <div class="milestone-status"><span class="dot waiting"></span><span>延期</span></div>
-    </div>
-  </div>
-  <div class="notes-section">
-    <div class="note">
-      <span class="icon">⚠</span>
-      <span><strong>关注点：</strong>模具开发周期约 1 个月，从模具完成到大货仅 10 天窗口。T2.3 延期项标注了钢丝软硬度问题（疑似指套产品的跨产品数据写在振动棒条目下，请确认在线表格数据归属）。</span>
-    </div>
-  </div>
-</div>
-
-<!-- 产品3：指套震动玩具 -->
-<div class="product-card">
-  <div class="product-header">
-    <div class="left">
-      <div class="product-icon p3">👆</div>
-      <div>
-        <div class="product-name">产品三：指套震动玩具</div>
-        <div class="product-sub">Finger Vibrator Toy — 结构开发 + 开模</div>
+      <div class="milestone-date editing">
+        <span style="font-size:10px;color:var(--text-muted)">开始 <input class="edit-input" style="width:70px" data-path="products.${pi}.milestones.${mi}.startDate" value="${esc(m.startDate)}"></span>
+        <span style="font-size:10px;color:var(--text-muted)">预计完成 <input class="edit-input" style="width:70px" data-path="products.${pi}.milestones.${mi}.endDate" value="${esc(m.endDate)}"></span>
+        ${m.actualDate ? '<span style="font-size:10px;color:var(--text-muted)">实际 <input class="edit-input" style="width:70px" data-path="products.'+pi+'.milestones.'+mi+'.actualDate" value="'+esc(m.actualDate)+'"></span>' : ''}
+        ${!m.actualDate ? '<span style="font-size:10px;color:var(--text-muted)">实际 <input class="edit-input" style="width:70px" data-path="products.'+pi+'.milestones.'+mi+'.actualDate" value="" placeholder="(空)"></span>' : ''}
       </div>
-    </div>
-    <div class="status-badge waiting">开发中</div>
-  </div>
-  <div class="progress-section">
-    <div class="milestone-row">
-      <div class="milestone-label">内部结构设计 &amp; 钢丝开模<div class="sub">核心结构件需新开模具 · 待出样后排期</div></div>
-      <div class="milestone-date">待定</div>
-      <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
-      <div class="milestone-status"><span class="dot pending"></span><span>待开始</span></div>
-    </div>
-    <div class="milestone-row">
-      <div class="milestone-label">样品确认 &amp; 反馈<div class="sub">待出样后排期</div></div>
-      <div class="milestone-date">待定</div>
-      <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
-      <div class="milestone-status"><span class="dot pending"></span><span>待开始</span></div>
-    </div>
-    <div class="milestone-row">
-      <div class="milestone-label">开大货模具 &amp; 生产<div class="sub">待样品确认后排期</div></div>
-      <div class="milestone-date">待定</div>
-      <div class="progress-bar-wrap"><div class="progress-bar pending" style="width:0%"></div></div>
-      <div class="milestone-status"><span class="dot pending"></span><span>待开始</span></div>
-    </div>
-  </div>
-  <div class="notes-section">
-    <div class="note">
-      <span class="icon">🔴</span>
-      <span><strong>延期预警：</strong>钢丝开模因钢丝软硬度不对需要调整，已延期至下周一（6/1）。该产品处于最早开发阶段，后续节点（样品确认、大货模具、生产周期）待出样后再排期。注：钢丝延期数据出现在在线表格 T2.3（产品2）行中，可能为跨产品数据录入，建议确认。</span>
-    </div>
-  </div>
-</div>
+      <div>
+        <div class="progress-bar-wrap"><div class="progress-bar ${dotClass}" style="width:${m.progress}%"></div></div>
+        <span style="font-size:10px;color:var(--text-muted)">进度 <input class="edit-input" style="width:45px" data-path="products.${pi}.milestones.${mi}.progress" value="${m.progress}" type="number" min="0" max="100"></span>
+      </div>
+      <div class="milestone-status">
+        <select class="edit-select" data-path="products.${pi}.milestones.${mi}.status" onchange="statusChanged(this,${pi},${mi})">
+          <option value="pending" ${m.status==='pending'?'selected':''}>待开始</option>
+          <option value="in_progress" ${m.status==='in_progress'?'selected':''}>进行中</option>
+          <option value="waiting" ${m.status==='waiting'?'selected':''}>等待中</option>
+          <option value="completed" ${m.status==='completed'?'selected':''}>已完成</option>
+        </select>
+      </div>
+    </div>`;
+  } else {
+    // Display row
+    let dateHtml = '';
+    if (m.status === 'completed') {
+      dateHtml = m.actualDate ? `<strong>${m.actualDate}</strong>` : `<strong>${m.endDate}</strong>`;
+    } else if (m.status === 'in_progress') {
+      dateHtml = `预计 <strong>${m.startDate}-${m.endDate}</strong>${m.actualDate ? ' · 实际完成 <strong>'+m.actualDate+'</strong>' : ''}`;
+    } else {
+      dateHtml = m.endDate ? `预计 <strong>${m.endDate}</strong>` : '待定';
+    }
 
-<!-- 近期关键节点 -->
-<div class="key-dates">
-  <h3>近期关键跟进节点</h3>
-  <div class="key-date-grid">
-    <div class="key-date-item">
-      <div class="product">🧴 可舔食润滑油</div>
-      <div class="event">FDA品牌名修正</div>
-      <div class="date-val urgent">处理中</div>
-    </div>
-    <div class="key-date-item">
-      <div class="product">🧴 可舔食润滑油</div>
-      <div class="event">FDA列名预计完成</div>
-      <div class="date-val soon">6/4 - 6/7</div>
-    </div>
-    <div class="key-date-item">
-      <div class="product">🧴 可舔食润滑油</div>
-      <div class="event">产品打样</div>
-      <div class="date-val soon">5/25 - 6/5</div>
-    </div>
-    <div class="key-date-item">
-      <div class="product">🧴 可舔食润滑油</div>
-      <div class="event">时光映画设计对接</div>
-      <div class="date-val done">实际完成 6/2</div>
-    </div>
-    <div class="key-date-item">
-      <div class="product">👆 指套震动玩具</div>
-      <div class="event">钢丝开模样品确认</div>
-      <div class="date-val soon">延期至 6/1</div>
-    </div>
-    <div class="key-date-item">
-      <div class="product">🐰 兔子振动棒</div>
-      <div class="event">模具开发进度跟进</div>
-      <div class="date-val normal">持续关注</div>
-    </div>
-  </div>
-</div>
+    return `<div class="milestone-row ${rowClass}">
+      <div class="milestone-label">${m.label}<div class="sub ${descClass}">${m.desc}</div></div>
+      <div class="milestone-date">${dateHtml}</div>
+      <div class="progress-bar-wrap"><div class="progress-bar ${dotClass}" style="width:${m.progress}%"></div></div>
+      <div class="milestone-status"><span class="dot ${dotClass}"></span><span>${statusLabel}</span></div>
+    </div>`;
+  }
+}
 
-<br>
-<div style="text-align:center;color:var(--text-muted);font-size:12px;padding:16px 0;">
-  本表由 Jeff 自动同步生成 · 数据来源：腾讯文档在线表格 · 上次同步：2026-05-29 10:30
-</div>
+function renderNote(p, pi, n, ni) {
+  if (isEditing) {
+    return `<div class="note ${n.type}">
+      <select class="note-type-select" data-path="products.${pi}.notes.${ni}.type">
+        <option value="red" ${n.type==='red'?'selected':''}>🔴 红色</option>
+        <option value="yellow" ${n.type==='yellow'?'selected':''}>⚠️ 黄色</option>
+        <option value="blue" ${n.type==='blue'?'selected':''}>ℹ️ 蓝色</option>
+        <option value="green" ${n.type==='green'?'selected':''}>✅ 绿色</option>
+      </select>
+      <span style="flex:1"><textarea class="edit-textarea" data-path="products.${pi}.notes.${ni}.text" rows="3">${esc(n.text)}</textarea></span>
+      <span class="delete-note show" onclick="deleteNote(${pi},${ni})" title="删除此备注">✕</span>
+    </div>`;
+  }
+  return `<div class="note ${n.type}"><span class="icon">${n.icon}</span><span>${n.text.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</span></div>`;
+}
+
+function renderKeyDates() {
+  let html = `<div class="key-dates"><h3>近期关键跟进节点</h3><div class="key-date-grid">`;
+  data.keyDates.forEach((k, ki) => {
+    if (isEditing) {
+      html += `<div class="key-date-item">
+        <input class="edit-input" style="margin-bottom:4px" data-path="keyDates.${ki}.product" value="${esc(k.product)}">
+        <input class="edit-input" style="margin-bottom:4px" data-path="keyDates.${ki}.event" value="${esc(k.event)}">
+        <input class="edit-input" data-path="keyDates.${ki}.date" value="${esc(k.date)}">
+        <select class="edit-select" style="margin-top:4px" data-path="keyDates.${ki}.cls">
+          <option value="urgent" ${k.cls==='urgent'?'selected':''}>红色/紧急</option>
+          <option value="soon" ${k.cls==='soon'?'selected':''}>黄色/临近</option>
+          <option value="normal" ${k.cls==='normal'?'selected':''}>绿色/正常</option>
+          <option value="done" ${k.cls==='done'?'selected':''}>绿色/已完成</option>
+        </select>
+        <span class="delete-note show" style="position:absolute;right:8px;top:8px" onclick="deleteKeyDate(${ki})">✕</span>
+      </div>`;
+    } else {
+      html += `<div class="key-date-item">
+        <div class="product">${esc(k.product)}</div>
+        <div class="event">${esc(k.event)}</div>
+        <div class="date-val ${k.cls}">${esc(k.date)}</div>
+      </div>`;
+    }
+  });
+  if (isEditing) {
+    html += `<div class="key-date-item" style="display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="addKeyDate()">+ 新增节点</div>`;
+  }
+  html += `</div></div>`;
+  return html;
+}
+
+// ============ EDIT HANDLERS ============
+function attachEditListeners() {
+  document.querySelectorAll('[data-path]').forEach(el => {
+    el.addEventListener('input', function() {
+      handleEdit(this);
+    });
+    el.addEventListener('change', function() {
+      handleEdit(this);
+    });
+  });
+}
+
+function handleEdit(el) {
+  const path = el.dataset.path;
+  const val = el.type === 'number' ? parseInt(el.value) || 0 : el.value;
+
+  const parts = path.split('.');
+  let obj = data;
+  for (let i = 0; i < parts.length - 1; i++) {
+    obj = obj[parts[i]];
+  }
+  const lastKey = parts[parts.length - 1];
+  obj[lastKey] = val;
+
+  saveData();
+  updateStatsOnly();
+}
+
+function statusChanged(select, pi, mi) {
+  const m = data.products[pi].milestones[mi];
+  m.status = select.value;
+  if (select.value === 'completed') {
+    if (!m.actualDate && m.endDate) m.actualDate = m.endDate;
+    m.progress = 100;
+  } else if (select.value === 'pending') {
+    m.actualDate = '';
+    m.progress = 0;
+  } else if (select.value === 'in_progress') {
+    m.actualDate = '';
+  }
+  saveData();
+  render();
+}
+
+function addMilestone(pi) {
+  data.products[pi].milestones.push({
+    id: 'T' + (pi+1) + '.' + (data.products[pi].milestones.length + 1),
+    label: '新里程碑', desc: '', startDate: '', endDate: '', actualDate: '',
+    status: 'pending', progress: 0
+  });
+  saveData();
+  render();
+}
+
+function deleteMilestone(pi, mi) {
+  if (confirm('确认删除里程碑 "' + data.products[pi].milestones[mi].label + '"? ')) {
+    data.products[pi].milestones.splice(mi, 1);
+    saveData();
+    render();
+  }
+}
+
+function addNote(pi) {
+  data.products[pi].notes.push({ type: 'yellow', icon: '⚠️', text: '新备注' });
+  saveData();
+  render();
+}
+
+function deleteNote(pi, ni) {
+  data.products[pi].notes.splice(ni, 1);
+  saveData();
+  render();
+}
+
+function addKeyDate() {
+  data.keyDates.push({ product: '产品', event: '事项', date: '日期', cls: 'normal' });
+  saveData();
+  render();
+}
+
+function deleteKeyDate(ki) {
+  data.keyDates.splice(ki, 1);
+  saveData();
+  render();
+}
+
+function updateStatsOnly() {
+  // lightweight: just re-render stats without full page refresh
+  let riskCount = 0, activeCount = 0;
+  data.products.forEach(p => {
+    p.milestones.forEach(m => {
+      if (['in_progress'].includes(m.status)) activeCount++;
+      if (m.highlight === 'red') riskCount++;
+    });
+    p.notes.forEach(n => { if (n.type === 'red') riskCount++; });
+  });
+  const statCards = document.querySelectorAll('.stat-card .value');
+  if (statCards.length >= 4) {
+    statCards[1].textContent = activeCount;
+    statCards[2].textContent = data.keyDates.length;
+    statCards[3].textContent = riskCount;
+  }
+}
+
+// ============ EXPORT ============
+function downloadMD() {
+  let md = `# 如水科技 — 产品进度数据总表\n\n`;
+  md += `> 导出时间：${data.updatedAt}\n> 来源：product-progress.html 前端编辑\n\n`;
+  md += `## 项目概览\n\n| 产品编号 | 产品名称 | 英文名称 | 当前阶段 | 状态 |\n`;
+  md += `|----------|----------|----------|----------|------|\n`;
+  data.products.forEach((p, i) => {
+    md += `| ${p.id} | ${p.name.replace('产品'+(i+1)+'：','')} | ${p.enName} | ${p.stage} | ${p.statusLabel} |\n`;
+  });
+  md += `\n---\n\n`;
+
+  data.products.forEach((p, i) => {
+    md += `## ${p.name}\n\n### 里程碑进度\n\n`;
+    md += `| 编号 | 里程碑 | 描述 | 开始日期 | 预计完成 | 实际完成 | 状态 | 进度 |\n`;
+    md += `|------|--------|------|----------|----------|----------|------|------|\n`;
+    p.milestones.forEach(m => {
+      const statusLabels = { completed: '✅ 已完成', in_progress: '🔵 进行中', pending: '⚪ 待开始', waiting: '⏳ 等待中' };
+      md += `| ${m.id} | ${m.label} | ${m.desc} | ${m.startDate} | ${m.endDate} | ${m.actualDate||'(空)'} | ${statusLabels[m.status]||'待开始'} | ${m.progress}% |\n`;
+    });
+    if (p.notes.length) {
+      md += `\n### 风险 & 备注\n\n`;
+      p.notes.forEach(n => {
+        md += `- ${n.icon} ${n.text}\n`;
+      });
+    }
+    md += `\n---\n\n`;
+  });
+
+  md += `## 近期关键跟进节点\n\n| 产品 | 事项 | 日期 |\n|------|------|------|\n`;
+  data.keyDates.forEach(k => {
+    md += `| ${k.product} | ${k.event} | ${k.date} |\n`;
+  });
+
+  const blob = new Blob([md], { type: 'text/markdown' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'DASHBOARD_DATA.md'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('📥 DASHBOARD_DATA.md 已下载');
+}
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ============ INIT ============
+loadData();
+render();
+</script>
 
 </body>
 </html>
