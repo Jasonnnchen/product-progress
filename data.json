@@ -1,18 +1,18 @@
 {
-  "updatedAt": "2026-06-08 16:21",
-  "version": 3,
+  "updatedAt": "2026-06-08 17:26",
+  "version": 4,
   "keyDates": [
     {
       "product": "🧴 可舔食润滑油",
       "event": "FDA品牌名修正",
-      "date": "处理中",
-      "cls": "urgent"
+      "date": "✅ 已完成",
+      "cls": "done"
     },
     {
       "product": "🧴 可舔食润滑油",
-      "event": "FDA列名预计完成",
-      "date": "6/4 - 6/7",
-      "cls": "soon"
+      "event": "FDA列名审批",
+      "date": "✅ 已完成 (6/7)",
+      "cls": "done"
     },
     {
       "product": "🧴 可舔食润滑油",
@@ -73,24 +73,22 @@
         {
           "id": "T1.4",
           "label": "FDA 列名申请",
-          "desc": "品牌名填错，今日输出正确信息给机构修改",
-          "descHighlight": true,
+          "desc": "品牌名修正完成，列名申请已提交",
           "startDate": "5/15",
           "endDate": "6/4-6/7",
           "actualDate": "5/15",
-          "status": "in_progress",
-          "progress": 35,
-          "highlight": "red"
+          "status": "completed",
+          "progress": 100
         },
         {
           "id": "T1.5",
           "label": "FDA 列名审批通过-樱桃已完成",
-          "desc": "品牌名修正后 7-10 天完成，需持续关注",
+          "desc": "樱桃味列名已审批通过",
           "startDate": "5/22",
           "endDate": "6/4-6/7",
-          "actualDate": "",
-          "status": "waiting",
-          "progress": 0
+          "actualDate": "6/7",
+          "status": "completed",
+          "progress": 100
         },
         {
           "id": "T1.9",
@@ -145,14 +143,14 @@
       ],
       "notes": [
         {
-          "type": "red",
-          "icon": "🔴",
-          "text": "供应商列名时品牌名填错！正在处理中，今日输出正确的品牌信息给 FDA 机构修改。列名修正后预计 7-10 天（约 6/4-6/7）完成。此问题直接影响后续出货时间线，需持续跟进机构反馈。"
+          "type": "green",
+          "icon": "✅",
+          "text": "FDA 品牌名修正已完成，列名申请已提交。樱桃味已审批通过，后续关注包材生产和出货节奏。"
         },
         {
-          "type": "yellow",
-          "icon": "⚠️",
-          "text": "持续关注：FDA 列名品牌名修正进度，7-10 天内跟进机构修改结果。如修正延迟可能影响包材生产和后续出货节奏。"
+          "type": "green",
+          "icon": "✅",
+          "text": "FDA 列名已全部完成——品牌名修正 + 列名审批通过。下一步重心：软管包材生产（预计 6/12 完成）和产品打样（已完成到 6/5）。"
         },
         {
           "type": "red",
