@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-08 17:33",
-  "version": 5,
+  "updatedAt": "2026-06-09 10:33",
+  "version": 6,
   "keyDates": [
     {
       "product": "🧴 可舔食润滑油",
@@ -23,8 +23,8 @@
     {
       "product": "🧴 可舔食润滑油",
       "event": "时光映画设计对接",
-      "date": "✅ 已完成 (6/2)",
-      "cls": "done"
+      "date": "🔄 进行中 (6/2)",
+      "cls": "soon"
     },
     {
       "product": "👆 指套震动玩具",
@@ -107,8 +107,8 @@
           "startDate": "5/21",
           "endDate": "5/25",
           "actualDate": "6/2",
-          "status": "completed",
-          "progress": 100
+          "status": "in_progress",
+          "progress": 85
         },
         {
           "id": "T1.6",
